@@ -1,0 +1,6 @@
+{
+  "name": "Medora",
+  "description": "Multilingual AI prescription understanding assistant that helps patients understand prescriptions and medication instructions in English, Hindi, and Marathi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

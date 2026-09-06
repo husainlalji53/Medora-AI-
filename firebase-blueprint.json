@@ -1,0 +1,126 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Patient user account and notification preferences",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "User identifier matching auth UID"
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Account creation ISO timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last update ISO timestamp"
+        }
+      },
+      "required": ["id", "email"]
+    },
+    "Prescription": {
+      "title": "Prescription",
+      "description": "Saved prescription record with analyzed medications",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique prescription identifier"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Owner user UID"
+        },
+        "patientName": {
+          "type": "string",
+          "description": "Patient name extracted from prescription"
+        },
+        "doctorName": {
+          "type": "string",
+          "description": "Doctor name"
+        },
+        "clinicName": {
+          "type": "string",
+          "description": "Clinic or hospital name"
+        },
+        "prescriptionDate": {
+          "type": "string",
+          "description": "Prescription issue date"
+        },
+        "diagnosis": {
+          "type": "string",
+          "description": "Clinical diagnosis or condition"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Plain language patient summary"
+        },
+        "confidenceScore": {
+          "type": "number",
+          "description": "Analysis confidence score 0-100"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last modification timestamp"
+        }
+      },
+      "required": ["id", "userId", "createdAt"]
+    },
+    "DailyDoseLog": {
+      "title": "DailyDoseLog",
+      "description": "Daily medication adherence record containing dose checkoffs",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Date string in YYYY-MM-DD format"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Owner user UID"
+        },
+        "date": {
+          "type": "string",
+          "description": "Date string in YYYY-MM-DD format"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Log creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Log update timestamp"
+        }
+      },
+      "required": ["id", "userId", "date"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile and preferences"
+    },
+    "/users/{userId}/prescriptions/{prescriptionId}": {
+      "schema": "Prescription",
+      "description": "User prescription records and medications"
+    },
+    "/users/{userId}/dailyDoseLogs/{dateId}": {
+      "schema": "DailyDoseLog",
+      "description": "Daily dose check-offs and adherence logs for each day"
+    }
+  }
+}
